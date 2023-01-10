@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import styled from "styled-components";
+import Pokemon from "./components/Pokemon";
+import { useGetPokemons } from './hooks/useGetPokemons'
 
-function App() {
-  const [count, setCount] = useState(0)
+
+export default function App() {
+  const pokemons = useGetPokemons('https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json');
+  
+  const pokeList = pokemons.map(pokemon => <Pokemon data={pokemon} key={pokemon.id} />);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <Container>
+      <Header>
+        <h2>Name or Number</h2>
+        <input type="text" />
+        <button>Search</button>
+      </Header>
+
+      <PokeGrid>{pokeList}</PokeGrid>
+    </Container>
+  );
 }
 
-export default App
+const Container = styled.div`
+  height: 100vh;
+`;
+const Header = styled.header`
+  background-color: #171717;
+  color: #f8fafc;
+  padding-left: 2rem;
+`;
+const PokeGrid = styled.ul`
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+`;
