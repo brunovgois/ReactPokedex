@@ -18,7 +18,7 @@ export default function Pokemon({ data }) {
   return (
     <PokeListItem>
       <ImageContainer>
-        <Image src={data.img} alt="pokemon profile picture" />
+        <Image src={data.img} alt={`Image of the pokemon ${data.name}`} />
       </ImageContainer>
       <PokeNumberWrapper>
         <PokeNumber>#{data.num}</PokeNumber>
