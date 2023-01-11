@@ -22,7 +22,7 @@ export default function App() {
         <Title>Name or Number</Title>
         <Input type="text" value={filterInput} onChange={handleTextCange}/>
         <SearchBtn>
-          <FaSearch size={14} color="#f8fafc" />
+          <FaSearch size={16} color="#f8fafc" />
         </SearchBtn>
       </Header>
 
@@ -67,6 +67,18 @@ const SearchBtn = styled.button`
 const PokeGrid = styled.ul`
   list-style-type: none;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  
+  @media only screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr
+  }
+
+  @media only screen and (min-width: 992px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr
+  }
+
+  @media only screen and (min-width: 1200px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+  }
 `;

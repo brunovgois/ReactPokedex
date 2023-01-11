@@ -32,16 +32,20 @@ export default function Pokemon({ data }) {
 
 const PokeListItem = styled.li`
   margin: 12px;
+  width: 100%
 `;
 
 const ImageContainer = styled.div`
-  background-color: #d1d5db;
-  max-width: 300px;
+  background-color: #f4f4f5;
+  border-radius: 5px;
+  max-width: 240px
 `;
 const Image = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
+  max-width: 100%;
+  height: auto;
 `;
 const PokeNumberWrapper = styled.div`
   background-color: #f9fafb;
