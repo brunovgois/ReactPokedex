@@ -2,26 +2,37 @@ import styled from "styled-components";
 import Pokemon from "./components/Pokemon";
 import { useGetPokemons } from "./hooks/useGetPokemons";
 import { FaSearch } from "react-icons/fa";
+import { useState } from "react";
 
 export default function App() {
+  
+  const [filterInput, setFilterInput] = useState('')
+
   const pokemons = useGetPokemons(
     "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json"
   );
-  const pokeList = pokemons.map((pokemon) => (
-    <Pokemon data={pokemon} key={pokemon.id} />
-  ));
+
+  const handleTextCange = (e) => {
+    setFilterInput(e.target.value)
+  }
 
   return (
     <Container>
       <Header>
         <Title>Name or Number</Title>
-        <Input type="text" />
+        <Input type="text" value={filterInput} onChange={handleTextCange}/>
         <SearchBtn>
-          <FaSearch size={14} color='#f8fafc'/>
+          <FaSearch size={14} color="#f8fafc" />
         </SearchBtn>
       </Header>
 
-      <PokeGrid>{pokeList}</PokeGrid>
+      <PokeGrid>
+        {
+          pokemons
+          .filter(pokemon => (pokemon.name.match(new RegExp(filterInput, 'i')) || pokemon.num.match(new RegExp(filterInput))))
+          .map(pokemon => <Pokemon data={pokemon} key={pokemon.id}/>)
+        }
+      </PokeGrid>
     </Container>
   );
 }
@@ -52,8 +63,7 @@ const SearchBtn = styled.button`
   background-color: #ea580c;
   border: none;
   cursor: pointer;
-  
-`
+`;
 const PokeGrid = styled.ul`
   list-style-type: none;
   display: grid;
