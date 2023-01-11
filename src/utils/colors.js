@@ -16,4 +16,4 @@ export const pokeTypeColors = {
   Flying: "#A98FF3",
 };
 
-export const whiteColorBgText = [Ghost, Dragon, Fighting, Poison];
+export const whiteColorBgText = ['Ghost', 'Dragon', 'Fighting', 'Poison'];

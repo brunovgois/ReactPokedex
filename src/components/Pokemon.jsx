@@ -1,11 +1,15 @@
 import styled from "styled-components";
-import { pokeTypeColors } from "../utils/type_colors";
+import { pokeTypeColors, whiteColorBgText } from "../utils/colors";
 
 export default function Pokemon({ data }) {
 
+
+
   const pokeTypes = data.type.map((type, idx) => {
+    const isTextWhite = whiteColorBgText.includes(type)
+
     return (
-      <PokeTypeContainer bgColor={pokeTypeColors[data.type[idx]]}>
+      <PokeTypeContainer textShouldBeWhite={isTextWhite} bgColor={pokeTypeColors[data.type[idx]]} >
         <PokeTypeDesc>{type}</PokeTypeDesc>
       </PokeTypeContainer>
     );
@@ -66,7 +70,7 @@ const PokeTypeContainer = styled.div`
   width: 30%;
   display: flex;
   justify-content: center;
-  
+  color: ${(props)=> props.textShouldBeWhite ? '#f9fafb' : '#000'}
 `;
 
 const PokeTypeDesc = styled.p`
